@@ -863,4 +863,4 @@ function EspInterface.getHealth(player)
 	return 100, 100;
 end
 
-getgenv().Sense = EspInterface;
+return EspInterface;
