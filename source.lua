@@ -323,7 +323,9 @@ function EspObject:Construct()
 end
 
 function EspObject:Destruct()
-	self.renderConnection:Disconnect();
+	if self.renderConnection then
+		self.renderConnection:Disconnect();
+	end
 
 	for i = 1, #self.bin do
 		self.bin[i]:Remove();
@@ -573,8 +575,12 @@ function ChamObject:Construct()
 end
 
 function ChamObject:Destruct()
-	self.updateConnection:Disconnect();
-	self.highlight:Destroy();
+	if self.updateConnection then
+		self.updateConnection:Disconnect();
+	end
+	if self.highlight then
+		self.highlight:Destroy();
+	end
 
 	clear(self);
 end
@@ -652,7 +658,9 @@ function InstanceObject:Construct()
 end
 
 function InstanceObject:Destruct()
-	self.renderConnection:Disconnect();
+	if self.renderConnection then
+		self.renderConnection:Disconnect();
+	end
 
 	for i = 1, #self.bin do
 		self.bin[i]:Remove();
@@ -863,4 +871,4 @@ function EspInterface.getHealth(player)
 	return 100, 100;
 end
 
-return EspInterface;
+getgenv().Sense = EspInterface;
